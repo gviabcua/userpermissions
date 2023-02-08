@@ -1,0 +1,59 @@
+/* new permission editor css
+ * ideas used from both OctoberCMS source code and other online sources ex.
+ * http://adrianroselli.com/2017/05/under-engineered-custom-radio-buttons-and-checkboxen.html
+ * https://www.w3schools.com/howto/howto_css_switch.asp
+ */
+
+@import './radio-button.css';
+@import './checkbox-slider.css';
+
+.permissioneditor {
+    font-size: 14px;
+    position: relative;
+    margin: 0 -20px;
+}
+
+.permissioneditor.control-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+.permissioneditor.control-disabled .permissions-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.01);
+    cursor: not-allowed;
+}
+
+.permission-row {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.permission-row:hover:not(:first-child) {
+    background: #4da7e8;
+    color: white;
+}
+
+.permission-row .permission-value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem .5rem;
+}
+
+.permissioneditor .permission-value-grid .permission-type {
+    text-transform: uppercase;
+    font-size: 11px;
+    text-align: center;
+}
+
+.permissioneditor .permission-value-grid .permission-value {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

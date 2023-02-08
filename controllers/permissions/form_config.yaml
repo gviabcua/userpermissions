@@ -1,0 +1,22 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: gviabcua.userpermissions::lang.permissions.menu_label
+form: $/gviabcua/userpermissions/models/permission/fields.yaml
+modelClass: Gviabcua\UserPermissions\Models\Permission
+
+create:
+    title: gviabcua.userpermissions::lang.permissions.create_permission
+    redirect: gviabcua/userpermissions/permissions/update/:id
+    redirectClose: gviabcua/userpermissions/permissions
+
+update:
+    title: gviabcua.userpermissions::lang.permissions.update_permission
+    redirect: gviabcua/userpermissions/permissions/update/:id
+    redirectClose: gviabcua/userpermissions/permissions
+
+preview:
+    title: gviabcua.userpermissions::lang.permissions.view_permission
+
+defaultRedirect: gviabcua/userpermissions/permissions

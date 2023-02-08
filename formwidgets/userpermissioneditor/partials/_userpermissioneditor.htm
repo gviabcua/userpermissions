@@ -1,0 +1,93 @@
+<div class="permissioneditor <?= $this->previewMode ? 'control-disabled' : '' ?>" <?=$field->getAttributes() ?>>
+    <!-- This is a modified version of the OctoberCMS backend permissions editor html, see the original file here:
+https://github.com/octobercms/october/blob/master/modules/backend/formwidgets/permissioneditor/partials/_permissioneditor.htm -->
+    <div class="permission-rows">
+        <?php $globalIndex = 0; ?>
+        <div class="permission-row">
+            <div class="permission-category">
+                <?= e(trans('')) ?>
+            </div>
+            <div class="permission-value-grid">
+                <div class="permission-type">
+                    <?= e(trans('backend::lang.user.allow')) ?>
+                </div>
+                <?php if (!$checkboxMode): ?>
+                <div class="permission-type">
+                    <?= e(trans('backend::lang.user.inherit')) ?>
+                </div>
+                <div class="permission-type">
+                    <?= e(trans('backend::lang.user.deny')) ?>
+                </div>
+                <?php endif ?>
+            </div>
+        </div>
+        <?php foreach ($permissions as $permission): ?>
+        <?php
+                $globalIndex++;
+                if (!$checkboxMode) {
+                    $permissionValue = array_key_exists($permission->id, $permissionsData)
+                        ? $permissionsData[$permission->id]
+                        : 0;
+                } else {
+                    $isChecked = false;
+                    if (array_key_exists($permission->id, $permissionsData))
+                    {
+                        if ($permissionsData[$permission->id] === 1)
+                        {
+                            $isChecked = true;
+                        } else {
+                            $isChecked = false;
+                        }
+                    }
+                }
+            ?>
+        <div class="permission-row">
+            <div class="permission-name">
+                <?php echo e(trans($permission->name)).' ('.e($permission->code).')' ?>
+            </div>
+            <div class="permission-value-grid">
+                <div class="permission-value">
+                    <?php if (!$checkboxMode): ?>
+                    <div class="permission-radio">
+                        <input id="<?= 'permission-'.$globalIndex.'-allow' ?>" name="<?= e($baseFieldName) ?>[<?= e($permission->id) ?>]"
+                            value="1" type="radio" data-radio-color="green" <?=$permissionValue==1 ?
+                            'checked="checked"' : '' ?>
+                        >
+                        <label for="<?= 'permission-'.$globalIndex.'-allow' ?>"></label>
+                    </div>
+                    <?php else: ?>
+                    <div class="permission-checkbox">
+                        <label for="<?= 'permission-'.$globalIndex.'-allow' ?>" class="switch">
+                            <input id="<?= 'permission-'.$globalIndex.'-allow' ?>" name="<?= e($baseFieldName) ?>[<?= e($permission->id) ?>]"
+                            value="1" type="checkbox" <?=$isChecked ? 'checked="checked"' : '' ?>>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <?php endif ?>
+                </div>
+                <?php if (!$checkboxMode): ?>
+                <div class="permission-value">
+                    <div class="permission-radio">
+                        <input id="<?= 'permission-'.$globalIndex.'-inherit' ?>" name="<?= e($baseFieldName) ?>[<?= e($permission->id) ?>]"
+                            value="2" type="radio" data-radio-color="blue" <?=$permissionValue==2 ? 'checked="checked"'
+                            : '' ?>
+                        >
+                        <label for="<?= 'permission-'.$globalIndex.'-inherit' ?>"></label>
+                    </div>
+                </div>
+                <div class="permission-value">
+                    <div class="permission-radio">
+                        <input id="<?= 'permission-'.$globalIndex.'-deny' ?>" name="<?= e($baseFieldName) ?>[<?= e($permission->id) ?>]"
+                            value="0" type="radio" data-radio-color="red" <?=$permissionValue==0 ? 'checked="checked"'
+                            : '' ?>
+                        >
+                        <label for="<?= 'permission-'.$globalIndex.'-deny' ?>"></label>
+                    </div>
+                </div>
+                <?php endif ?>
+            </div>
+        </div>
+        <?php endforeach ?>
+    </div>
+    <div class="permissions-overlay"></div>
+</div>

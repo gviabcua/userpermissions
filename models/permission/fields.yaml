@@ -1,0 +1,50 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: gviabcua.userpermissions::lang.permission.model_id
+        type: text
+        cssClass: form-id
+        description: Id of the permission
+        disabled: true
+    category:
+        label: category
+        type: dropdown
+        span: auto
+        cssClass: form-id
+        description: Id of the permission
+        options:
+            Devices: Devices
+            Diagnostic: Diagnostic
+            Maps: Maps
+            System: System
+            Thirtparty: Thirtparty
+
+    code:
+        label: gviabcua.userpermissions::lang.permission.model_code
+        type: text
+        span: auto
+        cssClass: form-code
+        description: Code for the permission
+        comment: gviabcua.userpermissions::lang.permission.model_code_comment
+        attributes:
+            maxlength: 128
+
+    name:
+        label: gviabcua.userpermissions::lang.permission.model_name
+        type: text
+        cssClass: form-name
+        description: Name of the permission
+        required: true
+        attributes:
+            maxlength: 128
+
+    description:
+        label: gviabcua.userpermissions::lang.permission.model_desc
+        type: textarea
+        cssClass: form-desc
+        description: Description of the permission
+        attributes:
+            maxlength: 191

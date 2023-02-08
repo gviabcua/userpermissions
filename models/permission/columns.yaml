@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: gviabcua.userpermissions::lang.permission.model_id
+        type: text
+        searchable: true
+    code:
+        label: gviabcua.userpermissions::lang.permission.model_code
+        type: text
+        width: 30%
+        searchable: true
+    name:
+        label: gviabcua.userpermissions::lang.permission.model_name
+        type: text
+        width: 30%
+        searchable: true
+    description:
+        label: gviabcua.userpermissions::lang.permission.model_desc
+        type: text
+        width: 40%
+    category:
+        label: category
+        type: text
+        width: 40%

@@ -1,0 +1,32 @@
+.form-id, .form-code, .form-name, .form-desc {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.field-textarea.size-small {
+    resize: none !important;
+    height: 120px;
+}
+
+.form-tabless-fields {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.form-elements:before, .form-tabless-fields:before, .form-elements:after, .form-tabless-fields:after {
+    content: none !important;
+}
+
+.form-desc textarea {
+    resize: none;
+}
+
+@media (min-width: 576px) {
+    .form-tabless-fields {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .form-name, .form-desc {
+        grid-column: 1 / 3;
+    }
+}

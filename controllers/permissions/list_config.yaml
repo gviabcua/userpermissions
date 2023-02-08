@@ -1,0 +1,19 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+title: gviabcua.userpermissions::lang.permissions.menu_label
+list: ~/plugins/gviabcua/userpermissions/models/permission/columns.yaml
+modelClass: Gviabcua\UserPermissions\Models\Permission
+recordUrl: gviabcua/userpermissions/permissions/update/:id
+
+noRecordsMessage: backend::lang.list.no_records
+
+recordsPerPage: 20
+
+showSetup: true
+
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: backend::lang.list.search_prompt

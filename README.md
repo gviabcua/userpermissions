@@ -101,6 +101,9 @@ Since every user model is extended with the same function it is available in bot
     
     // Working fastest then checking 'hasUserPermission' for each permission
     // return all permissions
-    $all_permission = $user->UserAllPermission()
+    $all_permission = $user->UserAllPermission();
+    
+    // return status of permission 'can-do-something'. If null - permission is disabled
+    $permission = $user->UserAllPermission()['can-do-something'];
 
 

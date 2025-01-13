@@ -9,6 +9,7 @@ use Winter\User\Models\UserGroup as UserGroupModel;
 use Winter\Storm\Exception\ApplicationException;
 use Illuminate\Support\Facades\DB as Db;
 use BackendAuth;
+use Cache;
 use Config;
 
 class Plugin extends \System\Classes\PluginBase
@@ -76,6 +77,9 @@ class Plugin extends \System\Classes\PluginBase
             if (!$model->is_activated) {
                 return [];
             }
+            if(Cache::has('CACHE_AllUserPermissions')){
+				return Cache::get('CACHE_AllUserPermissions');
+			}
             $groupPermissionsQuery = $model->user_permissions()->where('user_userpermissions_user_permission.permission_state', 2)
             ->join('users_groups', 'user_userpermissions_user_permission.user_id', '=', 'users_groups.user_id')
             ->join('user_userpermissions_group_permission', function ($join) {
@@ -106,6 +110,7 @@ class Plugin extends \System\Classes\PluginBase
             } else {
                 $permissionsQueryResult = $permissionsQueryResult->toArray();
             }
+            Cache::put('CACHE_AllUserPermissions', $permissionsQueryResult, 3600);
             return $permissionsQueryResult;
         }
 

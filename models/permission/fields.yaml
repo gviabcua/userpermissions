@@ -16,10 +16,13 @@ fields:
         cssClass: form-id
         description: Id of the permission
         options:
+            Billing: Billing
             Devices: Devices
             Diagnostic: Diagnostic
-            Maps: Maps
+            Inventory: Inventory
+            Commutation: Commutation
             System: System
+            Tasks: Tasks
             Thirtparty: Thirtparty
 
     code:

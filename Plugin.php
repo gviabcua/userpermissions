@@ -77,8 +77,11 @@ class Plugin extends \System\Classes\PluginBase
             if (!$model->is_activated) {
                 return [];
             }
-            if(Cache::has('CACHE_AllUserPermissions')){
-				return Cache::get('CACHE_AllUserPermissions');
+            if (!$model->id) {
+                return [];
+            }
+            if(Cache::has('CACHE_AllUserPermissions_'.$model->id)){
+				return Cache::get('CACHE_AllUserPermissions_'.$model->id);
 			}
             $groupPermissionsQuery = $model->user_permissions()->where('user_userpermissions_user_permission.permission_state', 2)
             ->join('users_groups', 'user_userpermissions_user_permission.user_id', '=', 'users_groups.user_id')
@@ -110,7 +113,7 @@ class Plugin extends \System\Classes\PluginBase
             } else {
                 $permissionsQueryResult = $permissionsQueryResult->toArray();
             }
-            Cache::put('CACHE_AllUserPermissions', $permissionsQueryResult, 3600);
+            Cache::put('CACHE_AllUserPermissions_'.$model->id, $permissionsQueryResult, 3600);
             return $permissionsQueryResult;
         }
 
